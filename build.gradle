@@ -1,8 +1,17 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.2.0.M2'
 	id 'java'
 	id 'checkstyle'
-	id "com.github.spotbugs" version "1.7.1"
+	id 'com.github.spotbugs' version '1.7.1'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -20,6 +29,14 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'com.h2database:h2'
+	testCompile 'junit:junit'
+}
+
+bootJar {
+	baseName = 'accessing-data-jpa'
+	version =  '0.1.0'
 }
 
 checkstyle {
